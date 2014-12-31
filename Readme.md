@@ -3,7 +3,7 @@
 It's a small application to see last news from ihackernews.com.
 It's use the JSON api.
 
-You need this python package
+You need this python2 package
 
     pygtk
     urllib2
