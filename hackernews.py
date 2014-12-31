@@ -2,12 +2,9 @@ import pygtk
 pygtk.require("2.0")
 
 import gtk
-import gobject
 import json
 import urllib2
-from subprocess import call
 
-from pdb import set_trace as dbg
 
 class IHackerNews(object):
     _timelaps = 60 #in seconds
@@ -65,6 +62,7 @@ class IHackerNews(object):
     def main(self):
         gtk.main()
 
+
 class IHackerNewsParser(object):
     _items = "items"
     _url = "http://api.ihackernews.com/page"
@@ -89,7 +87,5 @@ class IHackerNewsParser(object):
         
 
     
-
-print(__name__)
 if __name__ == "__main__":
     IHackerNews(IHackerNewsParser()).main()
