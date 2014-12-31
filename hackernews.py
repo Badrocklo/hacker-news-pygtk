@@ -4,10 +4,10 @@ pygtk.require("2.0")
 import gtk
 import json
 import urllib2
+from subprocess import call
 
 
 class IHackerNews(object):
-    _timelaps = 60 #in seconds
     
     def __init__(self, parser):
         """
