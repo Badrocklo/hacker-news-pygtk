@@ -19,6 +19,7 @@ class IHackerNews(object):
         """
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.set_title("IHackerNews")
+        vbox = gtk.VBox()
         scroll = gtk.ScrolledWindow()
 
         self.lstStore = gtk.ListStore(str)
@@ -28,12 +29,16 @@ class IHackerNews(object):
         tree.append_column(col)
         self.updateItems()
 
+        button = gtk.Button("Update")
+        button.connect("clicked", self.onBtnUpdate)
         
         tree.connect("button-press-event", self.onBtnPress)
         tree.connect("key-press-event", self.onKeyPress)
         self.window.connect("destroy", self.destroy_event)
         scroll.add(tree)
-        self.window.add(scroll)
+        vbox.add(scroll)
+        vbox.pack_end(button, False, False)
+        self.window.add(vbox)
         self.window.set_default_size(500, 800)
         self.window.show_all()
         self.ot = float("-inf")
@@ -45,6 +50,9 @@ class IHackerNews(object):
     def onKeyPress(self, widget, evt, data=None):
         if evt.keyval == 65293:
             self.selectRow(widget)
+
+    def onBtnUpdate(self, widget, data=None):
+        self.updateItems()
 
     def selectRow(self, widget):
         row = widget.get_selection().get_selected_rows()[1][0][0]
