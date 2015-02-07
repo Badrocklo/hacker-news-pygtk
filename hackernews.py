@@ -4,7 +4,8 @@ pygtk.require("2.0")
 import gtk
 import json
 import urllib2
-from subprocess import call
+from subprocess import Popen
+from pdb import set_trace as dbg
 
 
 class IHackerNews(object):
@@ -14,6 +15,7 @@ class IHackerNews(object):
         Begin with init the parser thread every minutes
         """
         self._parser = parser
+        #dbg()
         """
         initiliaze ui
         """
@@ -56,7 +58,7 @@ class IHackerNews(object):
 
     def selectRow(self, widget):
         row = widget.get_selection().get_selected_rows()[1][0][0]
-        call(["xdg-open", self.items[row][2]])
+        Popen(["xdg-open", self.items[row][2]])
 
     def destroy_event(self, widget, data=None):
         gtk.main_quit()
@@ -73,7 +75,8 @@ class IHackerNews(object):
 
 class IHackerNewsParser(object):
     _items = "items"
-    _url = "http://api.ihackernews.com/page"
+    #_url = "http://api.ihackernews.com/page"
+    _url = "http://api.badrocklo.com/json"
     _keysParse = ("title", "postedBy", "url")
 
     def readData(self):
